@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/Button_Image">
+        <file alias="Close_Btn">Source/Button_Image/close.png</file>
+        <file alias="Max_Btn">Source/Button_Image/max.png</file>
+        <file alias="Min_Btn">Source/Button_Image/min.png</file>
+        <file alias="Restore_Btn">Source/Button_Image/restore.png</file>
+    </qresource>
+    <qresource prefix="/CSS">
+        <file alias="BG_CSS">Source/SetBackGround.css</file>
+    </qresource>
+    <qresource prefix="/Label_Image">
+        <file alias="MyPhotoShop">Source/Label_Image/MyPhotoShop.png</file>
+        <file alias="V-Team">Source/Label_Image/V-Team.png</file>
+    </qresource>
+</RCC>
