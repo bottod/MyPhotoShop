@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+RC_FILE = app.rc
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MyPhotoShop
@@ -38,4 +40,3 @@ RESOURCES += \
 INCLUDEPATH += D:\OpenCV\version3_1_0\install\include
 LIBS += -L D:\OpenCV\version3_1_0\install\x86\mingw\bin\libopencv_*.dll
 LIBS += -L D:\OpenCV\version3_1_0\install\x86\mingw\lib\libopencv_*.a
-

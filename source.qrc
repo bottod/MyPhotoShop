@@ -12,4 +12,11 @@
         <file alias="MyPhotoShop">Source/Label_Image/MyPhotoShop.png</file>
         <file alias="V-Team">Source/Label_Image/V-Team.png</file>
     </qresource>
+    <qresource prefix="/Tool_Image">
+        <file alias="FileOpen">Source/Tool_Image/open.png</file>
+        <file alias="Quit">Source/Tool_Image/close.png</file>
+        <file alias="Gray">Source/Tool_Image/gray.png</file>
+        <file alias="Threshold">Source/Tool_Image/threshold.png</file>
+        <file alias="Make">Source/Tool_Image/Make.jpg</file>
+    </qresource>
 </RCC>

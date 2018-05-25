@@ -108,7 +108,78 @@ QWidget#TitleWidget
 /*内容栏窗口*/
 QWidget#BottomWidget
 {
-    border-bottom-left-radius:25px;
-    border-bottom-right-radius:25px;
+    border-bottom-left-radius:40px;
+    border-bottom-right-radius:40px;
     background-color:rgba(132, 133, 135, 150)
 }
+
+/*主菜单栏 菜单栏里的样式*/
+QMenuBar#MainMenuBar
+{
+    border-bottom-left-radius:25px;
+    border-bottom-right-radius:25px;
+    background-color:rgba(255, 153, 204, 60);
+    font:25px;
+    font-weight:bold;
+    color:black;
+}
+QMenuBar#MainMenuBar:hover
+{
+    border-bottom-left-radius:25px;
+    border-bottom-right-radius:25px;
+    background-color:rgba(255, 153, 204, 90);
+    font:25px;
+    font-weight:bold;
+    color:black;
+}
+
+/*文件操作菜单 下拉菜单里的样式*/
+QMenu#FileMenu
+{
+}
+
+/*修改图片菜单 下拉菜单里的样式*/
+QMenu#FileModifyMenu
+{
+}
+
+/*底部提示信息窗口*/
+QWidget#TipBottomWidget
+{
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+    background-color:rgba(153, 204, 255, 180);
+}
+
+/*底部颜色信息窗口布局*/
+QWidget#TipColorBottomWidget
+{
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+    background-color:rgba(1, 204, 255, 180);
+}
+
+/*底部提示信息窗口标签*/
+QLabel#TipBottomLabel
+{
+    font:23px;
+    background-color:transparent;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    font:italic;
+    font-weight:bold;
+}
+
+/*底部颜色提示信息窗口标签*/
+QLabel#TipColorBottomLabel
+{
+    font:23px;
+    background-color:transparent;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    font:italic;
+    font-weight:bold;
+}
+

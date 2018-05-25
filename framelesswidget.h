@@ -65,7 +65,7 @@ private:
     QPushButton * m_pButtonClose;                   //关闭按钮
 
     QHBoxLayout * m_pHTopLayout;                    //标题栏窗口的布局
-    QVBoxLayout * m_pVLayout;                       //标题栏和内容窗口的布局 竖直布局
+    QVBoxLayout * m_pVLayout;                       //竖直布局
 
     bool m_Moving;                                  //鼠标按下状态
     QPoint m_MovePosition;                          //鼠标相对于窗口的位置

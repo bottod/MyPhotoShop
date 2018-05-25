@@ -17,13 +17,13 @@ CXXFLAGS      = -fno-keep-inline-dllexport -g -std=gnu++11 -Wall -W -Wextra -fex
 INCPATH       = -I..\..\MyPhotoShop -I. -I..\..\..\..\OpenCV\version3_1_0\install\include -I..\..\..\Qt5.10.1\5.10.1\mingw53_32\include -I..\..\..\Qt5.10.1\5.10.1\mingw53_32\include\QtWidgets -I..\..\..\Qt5.10.1\5.10.1\mingw53_32\include\QtGui -I..\..\..\Qt5.10.1\5.10.1\mingw53_32\include\QtANGLE -I..\..\..\Qt5.10.1\5.10.1\mingw53_32\include\QtCore -Idebug -I..\..\..\Qt5.10.1\5.10.1\mingw53_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LD:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libqtmaind.a -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib -lshell32 -L D:\OpenCV\version3_1_0\install\x86\mingw\bin\libopencv_*.dll D:\OpenCV\version3_1_0\install\x86\mingw\lib\libopencv_*.a D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libQt5Widgetsd.a D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libQt5Guid.a D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libQt5Cored.a 
+LIBS        =        -lmingw32 -LD:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libqtmaind.a -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib -lshell32 -L D:\OpenCV\version3_1_0\install\x86\mingw\bin\libopencv_*.dll D:\OpenCV\version3_1_0\install\x86\mingw\lib\libopencv_*.a D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libQt5Widgetsd.a D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libQt5Guid.a D:\Qt\Qt5.10.1\5.10.1\mingw53_32\lib\libQt5Cored.a debug\app_res.o 
 QMAKE         = D:\Qt\Qt5.10.1\5.10.1\mingw53_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\app_res.o
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -71,8 +71,11 @@ DESTDIR_TARGET = debug\MyPhotoShop.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET):  $(OBJECTS) 
+$(DESTDIR_TARGET):  $(OBJECTS) debug/app_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
+
+debug/app_res.o: ../app.rc
+	windres -i ..\app.rc -o debug\app_res.o --include-dir=./.. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Debug ..\MyPhotoShop.pro -spec win32-g++
@@ -84,6 +87,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug\main.o debug\myphotoshop.o debug\framelesswidget.o debug\qrc_source.o debug\moc_myphotoshop.o debug\moc_framelesswidget.o
+	-$(DEL_FILE) debug\app_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -108,6 +112,11 @@ debug/qrc_source.cpp: ../source.qrc \
 		../Source/Label_Image/MyPhotoShop.png \
 		../Source/Label_Image/V-Team.png \
 		../Source/SetBackGround.css \
+		../Source/Tool_Image/Make.jpg \
+		../Source/Tool_Image/threshold.png \
+		../Source/Tool_Image/close.png \
+		../Source/Tool_Image/gray.png \
+		../Source/Tool_Image/open.png \
 		../Source/Button_Image/restore.png \
 		../Source/Button_Image/max.png \
 		../Source/Button_Image/min.png \
@@ -286,6 +295,15 @@ debug/moc_myphotoshop.cpp: ../framelesswidget.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qdir.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qfileinfo.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QToolBar \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qtoolbar.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qaction.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QMenu \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qmenu.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QMenuBar \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qmenubar.h \
 		../myphotoshop.h \
 		debug/moc_predefs.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/bin/moc.exe
@@ -595,6 +613,15 @@ debug/main.o: ../main.cpp ../myphotoshop.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qdir.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qfileinfo.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QToolBar \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qtoolbar.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qaction.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QMenu \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qmenu.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QMenuBar \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qmenubar.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qapplication.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -770,6 +797,15 @@ debug/myphotoshop.o: ../myphotoshop.cpp ../myphotoshop.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qdir.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qfileinfo.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QToolBar \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qtoolbar.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qaction.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QMenu \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qmenu.h \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QMenuBar \
+		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qmenubar.h \
 		../../../Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\myphotoshop.o ..\myphotoshop.cpp
 
