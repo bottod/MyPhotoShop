@@ -1,0 +1,4 @@
+通过继承framelesswidget并添加了一些小功能
+如果自己想开发还需要opencv环境，做个参考还是可以的
+InnoSetUp里是打包了可直接安装的程序
+ScreenShot是程序截图
